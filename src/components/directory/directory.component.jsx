@@ -55,8 +55,10 @@ export default class  Directory  extends React.Component {
                  //we use also here destructuring the section values
                 <div className='directory-menu'>
                     {
-                        this.state.sections.map( ( { title, imageUrl, id, size } )  => (
-                            <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
+                      // we need to avoid the tunel props-   title, imageUrl, id, size, linkUrl
+                      //used destucturing with spread operator to do something more 'accurent' 
+                        this.state.sections.map( ( { id, ...otherSectionProps} )  => (
+                            <MenuItem key={id} {...otherSectionProps} />
                         ))
                     }
                 </div>
