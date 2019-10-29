@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
+import './sign-in.styles.scss';
 // we need class component here because we have to store wa the user type in
 export default class SignIn extends Component {
     constructor(props){
@@ -11,18 +14,21 @@ export default class SignIn extends Component {
         }
     }
 
-    // prevent the default submit function to submit
+
+    //it happen we some on click the submit putton
     handleSubmit = event =>{
+        // prevent the default submit function  in html form to submit
         event.preventDefault();
 
         // clean up the state
         this.setState({email:'', password:''})
     }
 
+    //is going to happen we some try to type in  we update the state
     handleChange = event =>{
         const {value, name} = event.target;
 
-        // dynamicly set the property value 
+        // dynamicly set the property value
 
         this.setState({[name]: value})
     }
@@ -34,15 +40,29 @@ export default class SignIn extends Component {
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <input name ="email" type="email" value={this.state.email} onChange={this.handleChange} required />
-                    <label>Email</label>
-                    <input name ="password" type="password" value={this.state.password} onChange={this.handleChange} required />
-                    <label>Password</label>
+                    <FormInput 
+                        name='email'
+                        type='email'
+                        handleChange={this.handleChange}
+                        value={this.state.email} 
+                        label='email' 
+                        required 
+                    />
+                   
+                    <FormInput 
+                        name ='password'
+                        type='password' 
+                        handleChange={this.handleChange}
+                        value={this.state.password} 
+                        label='password' 
+                        required 
+                    />
+                   
 
-                    <input type="submit" value="Submit Form"></input>
+                    <CustomButton type="submit"> sign In </CustomButton>
                 </form>
 
             </div>
-        )
+        );
     }
 }
