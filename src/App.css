@@ -7,3 +7,8 @@ a {
   text-decoration: none;
   color: black;
 }
+
+/* universal selector  for every element we want*/
+*{
+  box-sizing: border-box;
+}

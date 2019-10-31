@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
+import { signInWithGoogle } from '../../firebase/firebase.utils';
+
 import './sign-in.styles.scss';
 // we need class component here because we have to store wa the user type in
 export default class SignIn extends Component {
@@ -19,7 +21,6 @@ export default class SignIn extends Component {
     handleSubmit = event =>{
         // prevent the default submit function  in html form to submit
         event.preventDefault();
-
         // clean up the state
         this.setState({email:'', password:''})
     }
@@ -27,9 +28,7 @@ export default class SignIn extends Component {
     //is going to happen we some try to type in  we update the state
     handleChange = event =>{
         const {value, name} = event.target;
-
         // dynamicly set the property value
-
         this.setState({[name]: value})
     }
 
@@ -58,8 +57,15 @@ export default class SignIn extends Component {
                         required 
                     />
                    
-
-                    <CustomButton type="submit"> sign In </CustomButton>
+                    <div className='buttons'>
+                         <CustomButton type="submit"> sign In </CustomButton>
+                        {/* is Google sign in so this property will get past the 
+                        value of true */}
+                        <CustomButton onClick={ signInWithGoogle } isGoogleSignIn > 
+                             Sign in with Google 
+                        </CustomButton>
+                    </div>
+                   
                 </form>
 
             </div>
