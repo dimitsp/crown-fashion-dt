@@ -44,6 +44,7 @@ export default class SignIn extends Component {
                         type='email'
                         handleChange={this.handleChange}
                         value={this.state.email} 
+                      
                         label='email' 
                         required 
                     />
@@ -53,6 +54,7 @@ export default class SignIn extends Component {
                         type='password' 
                         handleChange={this.handleChange}
                         value={this.state.password} 
+                       
                         label='password' 
                         required 
                     />

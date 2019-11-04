@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route }  from 'react-router-dom';
-  
+
 import './App.css';
 
 import HomePage from './pages/homepages/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
-import {auth} from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 
 //convert the function App to a class component
@@ -32,9 +32,27 @@ class App extends React.Component {
     //this OPEN SUBSCRIPTIONS is an open messaging system between our applicaion and firebase
     //whenever any change accour on firebase from any source 
     //firebase sends message that the auth status has change
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user =>{
-      this.setState({ currentUser: user });
-    })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth =>{
+      createUserProfileDocument(userAuth);
+      // if sigh in taking back the user data
+        if(userAuth){
+          const userRef = await createUserProfileDocument(userAuth);
+          userRef.onSnapshot(snapShot =>{
+            this.setState({
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
+            
+            });
+          });
+         
+          // else takinkg back null
+        }else{
+          this.setState({currentUser: userAuth});
+        }
+
+    });
   }
 
   //close the subscription whever the component will unmound
