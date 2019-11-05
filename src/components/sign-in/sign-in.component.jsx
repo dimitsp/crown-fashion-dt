@@ -5,7 +5,7 @@ import CustomButton from '../custom-button/custom-button.component';
 import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './sign-in.styles.scss';
-// we need class component here because we have to store wa the user type in
+// we need class component here because we have to store what the user type in
 export default class SignIn extends Component {
     constructor(props){
         super(props);
@@ -17,7 +17,7 @@ export default class SignIn extends Component {
     }
 
 
-    //it happen we some on click the submit putton
+    //it happen when someone clicks the submit putton
     handleSubmit = event =>{
         // prevent the default submit function  in html form to submit
         event.preventDefault();
@@ -25,7 +25,7 @@ export default class SignIn extends Component {
         this.setState({email:'', password:''})
     }
 
-    //is going to happen we some try to type in  we update the state
+    //is going to happen when someone trys to type in =>  we update the state
     handleChange = event =>{
         const {value, name} = event.target;
         // dynamicly set the property value

@@ -49,12 +49,14 @@ export const createUserProfileDocument = async(userAuth, additionalData) =>{
 
 };
 
+//Initialize the Firebase app using the configuration object:
 firebase.initializeApp(config);
 
 // this is for google authentication utilitie 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+//Setup the providers we want to support and access the auth library:
 //give us access to google auth provider class from auth library
 const provider = new firebase.auth.GoogleAuthProvider();
 

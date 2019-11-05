@@ -9,14 +9,14 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-
+//We have to modify the /App.js component.
 //convert the function App to a class component
 class App extends React.Component {
   constructor(){
     super();
     this.state={
       currentUser: null
-    }
+    };
   }
 
   //we wouldn like to have any mamory liks tou our subscription
@@ -43,15 +43,15 @@ class App extends React.Component {
                 id: snapShot.id,
                 ...snapShot.data()
               }
-            
+              
             });
+            console.log(this.state);
           });
          
           // else takinkg back null
-        }else{
-          this.setState({currentUser: userAuth});
         }
-
+          this.setState({currentUser: userAuth});
+        
     });
   }
 
